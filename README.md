@@ -68,7 +68,9 @@ $.showPreloader() - 隐藏/关闭 预加载 modal. 因为 预加载 modal 没有
 - title - string. Optional. 预加载 modal 标题. 默认（没有指定）的时候，它等同于 "Loading...". 你可以在App初始化时通过 modal预加载Title 参数改变默认的 预加载 标题。
 
 ##迷你指示器showIndicator
+
 > 如果你不需要用像预加载Modal这样如此大的modal 窗口去指示活动, 你可以使用简单并且小的指示器modal:
+
 ```
 $.showIndicator() - 显示指示器 modal
 $.hideIndicator() - 隐藏/关闭指示器 modal. 因为指示器modal没有任何按钮, 它需要用JavaScript来关闭
@@ -77,6 +79,7 @@ $.hideIndicator() - 隐藏/关闭指示器 modal. 因为指示器modal没有任�
 ##toast
 
 > toast是一种轻量的提示，在页面中间显示，并且会在2秒(默认值，可修改)之后自动消失。可以用来显示一些不会打断用户操作的提示。
+
 ```
 /* msg{string}: toast内容
  * duration{number}：toast显示时间,默认2000
