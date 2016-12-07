@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <link rel="stylesheet" type="text/css" href="myModals.min.css">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="myModals.min.js"></script>
+</head>
+
+<body>
+    <p><a href="#" class="alert-text">Alert With Text</a></p>
+    <p><a href="#" class="alert-text-title">Alert With Text and Title</a></p>
+    <p><a href="#" class="alert-text-title-callback">Alert With Text and Title and Callback</a></p>
+    <p><a href="#" class="alert-text-callback">Alert With Text and Callback</a></p>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <p><a href="#" class="confirm-ok">Confirm with text and Ok callback</a></p>
+    <p><a href="#" class="confirm-ok-cancel">Confirm with text, Ok and Cancel callbacks</a></p>
+    <p><a href="#" class="confirm-title-ok">Confirm with text, title and Ok callback</a></p>
+    <p><a href="#" class="confirm-title-ok-cancel">Confirm with text, title, Ok and Cancel callback</a></p>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <p><a href="#" class="prompt-ok">Prompt with text and Ok callback</a></p>
+    <p><a href="#" class="prompt-ok-cancel">Prompt with text, Ok and Cancel callbacks</a></p>
+    <p><a href="#" class="prompt-title-ok">Prompt with text, title and Ok callback</a></p>
+    <p><a href="#" class="prompt-title-ok-cancel">Prompt with text, title, Ok and Cancel callback</a></p>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <p><a href="#" class="open-3-modal">Modal With 3 Buttons</a></p>
+    <p><a href="#" class="open-slider-modal">Modal With Slider</a></p>
+    <p><a href="#" class="open-vertical-modal">Modal With Vertical Buttons</a></p>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <p><a href="#" class="open-preloader">Open Preloader</a></p>
+    <p><a href="#" class="open-preloader-title">Open Preloader with custom title</a></p>
+    <p><a href="#" class="open-indicator">Open Indicator</a></p>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <ul>
+        <li>msg{string}: toast内容</li>
+        <li>duration{number}：toast显示时间,默认2000</li>
+        <li>extraclass{string}：给toast根节点附加class，高度自定义属性，方便用户自行控制不同场景的样式。如果使用了第三个参数，请自行在业务css里添加extraclass对应的样式 </li>
+    </ul>
+    <p><a href="#" class="open-toast">Open Preloader</a></p>
+    <p><a href="#" class="open-toast-params">Open Preloader with custom title</a></p>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <p><a href="#" class="create-actions">选择操作</a></p>
+</body>
+<script type="text/javascript">
+$(function() {
+    $(document).on('click', '.alert-text', function() {
+        $.alert('Here goes alert text');
+    });
+
+    $(document).on('click', '.alert-text-title', function() {
+        $.alert('Here goes alert text', 'Custom Title!');
+    });
+
+    $(document).on('click', '.alert-text-title-callback', function() {
+        $.alert('Here goes alert text', 'Custom Title!', function() {
+            $.alert('Button clicked!')
+        });
+    });
+
+    $(document).on('click', '.alert-text-callback', function() {
+        $.alert('Here goes alert text', function() {
+            $.alert('Button clicked!')
+        });
+    });
+    $(document).on('click', '.confirm-ok', function() {
+        $.confirm('Are you sure?', function() {
+            $.alert('You clicked Ok button');
+        });
+    });
+
+    $(document).on('click', '.confirm-ok-cancel', function() {
+        $.confirm('Are you sure?',
+            function() {
+                $.alert('You clicked Ok button');
+            },
+            function() {
+                $.alert('You clicked Cancel button');
+            }
+        );
+    });
+    $(document).on('click', '.confirm-title-ok', function() {
+        $.confirm('Are you sure?', 'Custom Title', function() {
+            $.alert('You clicked Ok button');
+        });
+    });
+    $(document).on('click', '.confirm-title-ok-cancel', function() {
+        $.confirm('Are you sure?', 'Custom Title',
+            function() {
+                $.alert('You clicked Ok button');
+            },
+            function() {
+                $.alert('You clicked Cancel button');
+            }
+        );
+    });
+    $(document).on('click', '.prompt-ok', function() {
+        $.prompt('What is your name?', function(value) {
+            $.alert('Your name is "' + value + '". You clicked Ok button');
+        });
+    });
+
+    $(document).on('click', '.prompt-ok-cancel', function() {
+        $.prompt('What is your name?',
+            function(value) {
+                $.alert('Your name is "' + value + '". You clicked Ok button');
+            },
+            function(value) {
+                $.alert('Your name is "' + value + '". You clicked Cancel button');
+            }
+        );
+    });
+    $(document).on('click', '.prompt-title-ok', function() {
+        $.prompt('What is your name?', 'Custom Title', function(value) {
+            $.alert('Your name is "' + value + '". You clicked Ok button');
+        });
+    });
+    $(document).on('click', '.prompt-title-ok-cancel', function() {
+        $.prompt('What is your name?', 'Custom Title',
+            function(value) {
+                $.alert('Your name is "' + value + '". You clicked Ok button');
+            },
+            function(value) {
+                $.alert('Your name is "' + value + '". You clicked Cancel button');
+            }
+        );
+    });
+    $(document).on('click', '.open-3-modal', function() {
+        $.modal({
+            title: 'Modal with 3 buttons',
+            text: 'Vivamus feugiat diam velit. Maecenas aliquet egestas lacus, eget pretium massa mattis non. Donec volutpat euismod nisl in posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae',
+            buttons: [{
+                text: 'B1',
+                onClick: function() {
+                    $.alert('You clicked first button!')
+                }
+            }, {
+                text: 'B2',
+                onClick: function() {
+                    $.alert('You clicked second button!')
+                }
+            }, {
+                text: 'B3',
+                bold: true,
+                onClick: function() {
+                    $.alert('You clicked third button!')
+                }
+            }, ]
+        })
+    });
+    $(document).on('click', '.open-slider-modal', function() {
+        var modal = $.modal({
+            title: 'Awesome Photos?',
+            text: 'What do you think about my photos?',
+            afterText: '<div class="swiper-container" style="width: auto; margin:5px -15px -15px">' +
+                '<div class="swiper-pagination"></div>' +
+                '<div class="swiper-wrapper">' +
+                '<div class="swiper-slide"><img src="..." height="150" style="display:block"></div>' +
+                '<div class="swiper-slide"><img src="..." height="150" style="display:block"></div>' +
+                '</div>' +
+                '</div>',
+            buttons: [{
+                text: 'Bad :('
+            }, {
+                text: 'Awesome!',
+                bold: true,
+                onClick: function() {
+                    $.alert('Thanks! I know you like it!')
+                }
+            }, ]
+        })
+        $.swiper($$(modal).find('.swiper-container'), {
+            pagination: '.swiper-pagination'
+        });
+    });
+
+    $(document).on('click', '.open-vertical-modal', function() {
+        $.modal({
+            title: 'Vertical Buttons Layout',
+            text: 'Vivamus feugiat diam velit. Maecenas aliquet egestas lacus, eget pretium massa mattis non. Donec volutpat euismod nisl in posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae',
+            verticalButtons: true,
+            buttons: [{
+                text: 'Button 1',
+                onClick: function() {
+                    $.alert('You clicked first button!')
+                }
+            }, {
+                text: 'Button 2',
+                onClick: function() {
+                    $.closeModal(this);
+
+                }
+            }, {
+                text: 'Button 3',
+                onClick: function() {
+                    $.alert('You clicked third button!')
+                }
+            }, ]
+        })
+    });
+    $(document).on('click', '.open-preloader', function() {
+        $.showPreloader();
+        setTimeout(function() {
+            $.hidePreloader();
+        }, 2000);
+    });
+    $(document).on('click', '.open-preloader-title', function() {
+        $.showPreloader('Custom Title')
+        setTimeout(function() {
+            $.hidePreloader();
+        }, 2000);
+    });
+    $(document).on('click', '.open-indicator', function() {
+        $.showIndicator();
+        setTimeout(function() {
+            $.hideIndicator();
+        }, 2000);
+    });
+    $(document).on('click', '.open-toast', function() {
+        $.toast("操作失败");
+    });
+    $(document).on('click', '.open-toast-params', function() {
+        $.toast('操作成功，正在跳转...', 2345, 'success top');
+    });
+    $(document).on('click', '.create-actions', function() {
+        var buttons1 = [{
+            text: '请选择',
+            label: true
+        }, {
+            text: '卖出',
+            bold: true,
+            color: 'danger',
+            onClick: function() {
+                $.alert("你选择了“卖出“");
+            }
+        }, {
+            text: '买入',
+            onClick: function() {
+                $.alert("你选择了“买入“");
+            }
+        }];
+        var buttons2 = [{
+            text: '取消',
+            bg: 'danger'
+        }];
+        var groups = [buttons1, buttons2];
+        $.actions(groups);
+    });
+})
+</script>
+
+</html>
